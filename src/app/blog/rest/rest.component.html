@@ -1,0 +1,40 @@
+<div class="container ">
+  <div class="row">
+    <div class="col-12 mb-5">
+      <h1>Product-List</h1>
+    </div>
+    <div class="col-12 mb-3">
+      <nav>
+       <b>Tìm kiếm: </b> 
+       <input type="text" name="title" [(ngModel)]="name" (ngModelChange)="search()" placeholder="input title">
+      </nav>
+    </div>
+    <div class="col-md-3 mb-5" *ngFor="let product of products | paginate:{itemsPerPage:8, currentPage:p};">
+      <div class="card">
+        <div class="card-header">
+          {{product.id}}
+        </div>
+        <div class="card-body set-height">
+          <a [routerLink]="['/product-detail',product.id]">
+            <h5 class="card-title text-center">{{product.name}}</h5>
+            <img src="{{product.avatar}}" class="img-responsive rounded mx-auto d-block" />
+          </a>
+          <div class="row">
+            <div class="col-6">
+              <p><b>Ram:</b> {{product.ram}}</p>
+            </div>
+            <div class="col-6">
+              <p><b>Cpu:</b> {{product.cpu}}</p>
+            </div>
+            <div class="col-6">
+              <p><b>Memory:</b> {{product.hdd}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
